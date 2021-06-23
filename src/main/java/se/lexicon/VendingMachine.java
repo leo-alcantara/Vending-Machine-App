@@ -8,4 +8,5 @@ public interface VendingMachine {
     void presentProducts();
     int getBalance();
 
+
 }
