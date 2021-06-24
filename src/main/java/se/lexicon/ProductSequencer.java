@@ -2,12 +2,10 @@ package se.lexicon;
 
 public class ProductSequencer {
 
-    private static int productNumber;
+    private static int sequencer = 0;
 
     public static int nextProductNumber(){
-        int sequencer = 0;
-        productNumber = ++sequencer;
-        return productNumber;
+        return ++sequencer;
     }
 
 }

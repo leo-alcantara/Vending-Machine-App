@@ -1,53 +1,59 @@
 package se.lexicon;
+import java.util.Arrays;
+
+import static se.lexicon.Denominations.SEK1;
 
 public class VendingMachineImpl implements VendingMachine {
     //Fields
-    int[] denominations;
+
     Product[] products;
     int moneyPool;
 
     //Constructors
-    public VendingMachineImpl(int[] denominations, Product[] products, int moneyPool) {
-        this.denominations = denominations;
+    public VendingMachineImpl(Product[] products, int moneyPool) {
         this.products = products;
         this.moneyPool = moneyPool;
     }
 
     //Instantiations
-    Drinks newDrink;
-    Snacks newSnacks;
-    Candy newCandy;
+    Denominations newDenominations;
 
 
     //Methods
     @Override
-    public void addCurrency(int money) {
-        moneyPool = moneyPool + money;
+    public void addCurrency(Denominations money) {
+        switch (money){
+            case SEK1:
+            case SEK2:
+            case SEK5:
+            case SEK10:
+            case SEK20:
+            case SEK50:
+            case SEK100:
+            case SEK200:
+            case SEK500:
+            case SEK1000:
+                moneyPool = moneyPool + money.getValue();
+               break;
+            default:
+
+        }
+
     }
 
     @Override
     public Product request(int productNumber) {
-        for (int i = 0; i < products.length; i++) {
-            if (products[i].getPRODUCTNUMBER() == productNumber) {
-                if (products[i].equals(newDrink)) {
-                    int drinkCost = newDrink.getPrice();
+        Product boughtProduct = null;
+        for (Product product : products) {
+            if (product.getPRODUCTNUMBER() == productNumber) {
+                if (moneyPool >= product.getPrice()) {
+                    int drinkCost = product.getPrice();
                     moneyPool = moneyPool - drinkCost;
-                } else if (products[i].getPRODUCTNUMBER() == productNumber) {
-                    if (products[i].equals(newSnacks)) {
-                        int snacksCost = newSnacks.getPrice();
-                        moneyPool = moneyPool - snacksCost;
-                    } else if (products[i].getPRODUCTNUMBER() == productNumber) {
-                        if (products[i].equals(newCandy)) {
-                            int candyCost = newCandy.getPrice();
-                            moneyPool = moneyPool - candyCost;
-                        }  else {
-                            System.out.println("Product number not valid.");
-                        }
-                    }
+                    boughtProduct = product;
                 }
             }
         }
-        return products[i];
+         return boughtProduct;
     }
 
     @Override
@@ -59,40 +65,30 @@ public class VendingMachineImpl implements VendingMachine {
 
     @Override
     public String getDescription(int productNumber) {
-        for (int i = 0; i < products.length; i++) {
-            if (products[i].getPRODUCTNUMBER() == productNumber) {
-                if (products[i].equals(newDrink)) {
-                    newDrink.toString();
-                } else if (products[i].equals(newSnacks)) {
-                    newSnacks.toString();
-                } else if (products[i].equals(newCandy)) {
-                    newCandy.toString();
+        String productsDescription = null;
+        for (Product product : products) {
+            if (product.getPRODUCTNUMBER() == productNumber) {
+                product.use();
+                productsDescription = product.getName();
+                } else {
+                    System.out.println("Product number not valid.");
                 }
-            } else {
-                System.out.println("Product number not valid.");
             }
+        return productsDescription;
         }
-        return "Your product";
-    }
+
+
 
     @Override
     public int getBalance() {
         return moneyPool;
     }
 
-    public Product buy(int money, int prodNum) {
-        if (money >= moneyPool) {
-            moneyPool = moneyPool - money;
-        }
-        return newDrink;
-    }
-
 
     @Override
     public String[] getProducts() {
-        String[] allProducts = products;
-        System.out.println(products.toString());
-        return products;
+        String[] allProducts = Arrays.copyOf(products, products.length, String[].class);
+        return allProducts;
 
     }
 

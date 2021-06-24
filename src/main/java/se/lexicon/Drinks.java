@@ -8,7 +8,7 @@ public class Drinks extends Product {
     String volume;
 
     //Instantiations
-    VendingMachineImpl newVendingMachineImpl;
+
 
     //Constructor
     public Drinks(String name, String description, int price, String volume) {
@@ -19,8 +19,7 @@ public class Drinks extends Product {
     //Methods
     @Override
     String examine(){
-        System.out.println(getName() + " " + getDescription() + " " + getPrice());
-        return getName();
+        return toString();
     }
 
     @Override
@@ -42,13 +41,13 @@ public class Drinks extends Product {
                 "If you have a nut allergy, make sure to choose a product which does not contain nuts.";
     }
 
-    public Drinks createNewDrinks (String name, String description, int price, String volume) {
-        Drinks newDrinks = new Drinks(name, description, price, volume);
-        newVendingMachineImpl.products = Arrays.copyOf(newVendingMachineImpl.products, newVendingMachineImpl.products.length + 1);
-        newVendingMachineImpl.products[newVendingMachineImpl.products.length - 1] = newDrinks;
-        return newDrinks;
+    //public Drinks createNewDrinks (String name, String description, int price, String volume) {
+    //    Drinks newDrinks = new Drinks(name, description, price, volume);
+    //    newVendingMachineImpl.products = Arrays.copyOf(newVendingMachineImpl.products, newVendingMachineImpl.products.length + 1);
+    //    newVendingMachineImpl.products[newVendingMachineImpl.products.length - 1] = newDrinks;
+    //    return newDrinks;
 
-    }
+    //}
 
 
 

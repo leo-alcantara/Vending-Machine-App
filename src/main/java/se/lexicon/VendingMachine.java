@@ -2,7 +2,7 @@ package se.lexicon;
 
 public interface VendingMachine {
 
-    void addCurrency(int money);
+    void addCurrency(Denominations money);
     Product request(int productNumber);
     int endSession();
     String getDescription(int productNumber);

@@ -22,6 +22,10 @@ public enum Denominations {
         this.value = value;
     }
 
+    public int getValue() {
+        return value;
+    }
+
     Denominations[] denominations = Denominations.values();
 
 
