@@ -9,4 +9,5 @@ public class ProductSequencer {
         productNumber = ++sequencer;
         return productNumber;
     }
+
 }

@@ -6,12 +6,14 @@ public abstract class Product {
     String name;
     String description;
     int price;
+    private final int PRODUCTNUMBER;
 
     //Constructor
     public Product(String name, String description, int price) {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.PRODUCTNUMBER = ProductSequencer.nextProductNumber();
     }
 
     //Methods
@@ -42,5 +44,9 @@ public abstract class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getPRODUCTNUMBER() {
+        return PRODUCTNUMBER;
     }
 }

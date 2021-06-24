@@ -19,12 +19,13 @@ public class Drinks extends Product {
     //Methods
     @Override
     String examine(){
-        System.out.println(getName() + getDescription() + getPrice());
+        System.out.println(getName() + " " + getDescription() + " " + getPrice());
         return getName();
     }
 
     @Override
     public void use(){
+        useToString();
     }
 
     @Override
