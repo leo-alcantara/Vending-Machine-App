@@ -1,29 +1,50 @@
 package se.lexicon;
 
+import java.util.Arrays;
+
 public class Snacks extends Product {
 
+    //Fields
     int calories;
 
-    public Snacks(String name, int price, int calories) {
-        super(name, price);
+    //Instantiations
+    VendingMachineImpl newVendingMachineImpl;
+
+    //Constructors
+    public Snacks(String name, String description, int price, int calories) {
+        super(name, description, price);
         this.calories = calories;
     }
 
-    Snacks newSnacks;
-
+    //Methods
     String examine(){
-        return getName();
-    }
-
-    @Override
-    public Product purchase(int money){
-        return newSnacks;
-
+        return toString();
     }
 
     @Override
     public void use(){
+        useToString();
+    }
 
+    @Override
+    public String toString() {
+        return "Candy: " +
+                "name: " + name + ", " +
+                "price: " + price + " and " +
+                "calories: " + calories +
+                ".";
+    }
+
+    public String useToString() {
+        return "Open the package of your " + name + " and enjoy every bite of it. WARNING! " +
+                "If you have a nut allergy, make sure to choose a product which does not contain nuts.";
+    }
+
+    public Snacks createNewSnacks(String name, String description, int price, int calories) {
+        Snacks newSnacks = new Snacks(name, description, price, calories);
+        newVendingMachineImpl.products = Arrays.copyOf(newVendingMachineImpl.products, newVendingMachineImpl.products.length + 1);
+        newVendingMachineImpl.products[newVendingMachineImpl.products.length - 1] = newSnacks;
+        return newSnacks;
 
     }
 

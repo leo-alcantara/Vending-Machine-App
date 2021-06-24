@@ -2,11 +2,14 @@ package se.lexicon;
 
 public interface VendingMachine {
 
-    boolean addMoney(int money);
-    Product buy(int money, int prodNum);
-    int returnChange();
-    void presentProducts();
+    void addCurrency(int money);
+    Product request(int productNumber);
+    int endSession();
+    String getDescription(int productNumber);
     int getBalance();
+    String[] getProducts();
+
+
 
 
 }

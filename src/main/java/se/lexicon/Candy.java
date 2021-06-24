@@ -1,34 +1,50 @@
 package se.lexicon;
 
-public class Candy extends Product {
+import java.util.Arrays;
 
+public class Candy extends Product {
+    //Fields
     int sugarPercent;
 
-    public Candy(String name, int price, int sugarPercent) {
-        super(name, price);
+    //Instantiations
+    VendingMachineImpl newVendingMachineImpl;
+    Candy newCandy;
+
+    //Constructor
+    public Candy(String name, String description, int price, int sugarPercent) {
+        super(name, description, price);
         this.sugarPercent = sugarPercent;
     }
 
-    Candy newCandy;
-
-    String examine(){
-        return getName();
+    //Methods
+    String examine() {
+        return toString();
     }
 
     @Override
-    public Product purchase(int money){
+    public void use() {
+        useToString();
+    }
+
+    @Override
+    public String toString() {
+        return "Candy: " +
+                "name: " + name + ", " +
+                "price: " + price + " and " +
+                "sugarPercent: " + sugarPercent +
+                ".";
+    }
+
+    public String useToString() {
+        return "Open the package of your " + name + " and enjoy every bite of it. WARNING! " +
+                "If you have a nut allergy, make sure to choose a product which does not contain nuts.";
+    }
+
+    public Candy createNewCandy(String name, String description, int price, int sugarPercent) {
+        Candy newCandy = new Candy(name, description, price, sugarPercent);
+        newVendingMachineImpl.products = Arrays.copyOf(newVendingMachineImpl.products, newVendingMachineImpl.products.length + 1);
+        newVendingMachineImpl.products[newVendingMachineImpl.products.length - 1] = newCandy;
         return newCandy;
 
     }
-
-    @Override
-    public void use(){
-
-
-    }
-
-
-
-
-
 }
