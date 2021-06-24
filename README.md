@@ -33,5 +33,4 @@ For approved:
 
 Optional:
 • Build a user interface for the application (graphical or console based) where the user will be able to communicate with all parts of the application.
-1
   

@@ -7,9 +7,6 @@ public class Snacks extends Product {
     //Fields
     int calories;
 
-    //Instantiations
-    VendingMachineImpl newVendingMachineImpl;
-
     //Constructors
     public Snacks(String name, String description, int price, int calories) {
         super(name, description, price);
@@ -40,13 +37,6 @@ public class Snacks extends Product {
                 "If you have a nut allergy, make sure to choose a product which does not contain nuts.";
     }
 
-    public Snacks createNewSnacks(String name, String description, int price, int calories) {
-        Snacks newSnacks = new Snacks(name, description, price, calories);
-        newVendingMachineImpl.products = Arrays.copyOf(newVendingMachineImpl.products, newVendingMachineImpl.products.length + 1);
-        newVendingMachineImpl.products[newVendingMachineImpl.products.length - 1] = newSnacks;
-        return newSnacks;
-
-    }
 
 
 

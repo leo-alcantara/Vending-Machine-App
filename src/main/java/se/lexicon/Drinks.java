@@ -7,9 +7,6 @@ public class Drinks extends Product {
     //Fields
     String volume;
 
-    //Instantiations
-
-
     //Constructor
     public Drinks(String name, String description, int price, String volume) {
         super(name, description, price);
@@ -37,8 +34,7 @@ public class Drinks extends Product {
     }
 
     public String useToString() {
-        return "Open the package of your " + name + " and enjoy every bite of it. WARNING! " +
-                "If you have a nut allergy, make sure to choose a product which does not contain nuts.";
+        return "Open the can of your " + name + " and enjoy every sip of it.";
     }
 
     //public Drinks createNewDrinks (String name, String description, int price, String volume) {
