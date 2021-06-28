@@ -1,4 +1,6 @@
 package se.lexicon;
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+
 import java.util.Arrays;
 
 import static se.lexicon.Denominations.SEK1;
@@ -10,14 +12,13 @@ public class VendingMachineImpl implements VendingMachine {
     int moneyPool;
 
     //Constructors
-    public VendingMachineImpl(Product[] products, int moneyPool) {
-        this.products = products;
-        this.moneyPool = moneyPool;
+    public VendingMachineImpl() {
+        this.products = new Product[0];
+        this.moneyPool = 0;
     }
 
     //Instantiations
     Denominations newDenominations;
-
 
     //Methods
     @Override
@@ -47,13 +48,15 @@ public class VendingMachineImpl implements VendingMachine {
         for (Product product : products) {
             if (product.getPRODUCTNUMBER() == productNumber) {
                 if (moneyPool >= product.getPrice()) {
-                    int drinkCost = product.getPrice();
-                    moneyPool = moneyPool - drinkCost;
+                    int productCost = product.getPrice();
+                    moneyPool = moneyPool - productCost;
                     boughtProduct = product;
+                    System.out.println(boughtProduct);
                 }
             }
         }
          return boughtProduct;
+
     }
 
     @Override
@@ -68,7 +71,7 @@ public class VendingMachineImpl implements VendingMachine {
         String productsDescription = null;
         for (Product product : products) {
             if (product.getPRODUCTNUMBER() == productNumber) {
-                product.use();
+                System.out.println(product.examine());
                 productsDescription = product.getName();
                 } else {
                     System.out.println("Product number not valid.");
@@ -86,10 +89,32 @@ public class VendingMachineImpl implements VendingMachine {
 
 
     @Override
-    public String[] getProducts() {
+    public String[] getProducts() { //
         String[] allProducts = Arrays.copyOf(products, products.length, String[].class);
         return allProducts;
 
+    }
+
+
+    public Drinks createNewDrinks (String name, String description, int price, String volume) {
+        Drinks newDrinks = new Drinks(name, description, price, volume);
+        products = Arrays.copyOf(products, products.length + 1);
+        products[products.length - 1] = newDrinks;
+        return newDrinks;
+    }
+
+    public Snacks createNewSnack (String name, String description, int price, int calories) {
+        Snacks newSnack = new Snacks(name, description, price, calories);
+        products = Arrays.copyOf(products, products.length + 1);
+        products[products.length - 1] = newSnack;
+        return newSnack;
+    }
+
+    public Candy createNewCandy (String name, String description, int price, int sugarPercent) {
+        Candy newCandy = new Candy (name, description, price, sugarPercent);
+        products = Arrays.copyOf(products, products.length + 1);
+        products[products.length - 1] = newCandy;
+        return newCandy;
     }
 
 

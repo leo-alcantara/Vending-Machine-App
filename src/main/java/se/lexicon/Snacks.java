@@ -25,7 +25,7 @@ public class Snacks extends Product {
 
     @Override
     public String toString() {
-        return "Candy: " +
+        return "Snack: " +
                 "name: " + name + ", " +
                 "price: " + price + " and " +
                 "calories: " + calories +

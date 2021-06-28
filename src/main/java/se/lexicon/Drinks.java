@@ -26,7 +26,7 @@ public class Drinks extends Product {
 
     @Override
     public String toString() {
-        return "Candy: " +
+        return "Drink: " +
                 "name: " + name + " " +
                 "price: " + price + " and " +
                 "volume: " + volume +
@@ -37,13 +37,7 @@ public class Drinks extends Product {
         return "Open the can of your " + name + " and enjoy every sip of it.";
     }
 
-    //public Drinks createNewDrinks (String name, String description, int price, String volume) {
-    //    Drinks newDrinks = new Drinks(name, description, price, volume);
-    //    newVendingMachineImpl.products = Arrays.copyOf(newVendingMachineImpl.products, newVendingMachineImpl.products.length + 1);
-    //    newVendingMachineImpl.products[newVendingMachineImpl.products.length - 1] = newDrinks;
-    //    return newDrinks;
 
-    //}
 
 
 
