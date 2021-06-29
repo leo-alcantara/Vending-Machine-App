@@ -1,4 +1,5 @@
 package se.lexicon;
+
 import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 
 import java.util.Arrays;
@@ -23,7 +24,7 @@ public class VendingMachineImpl implements VendingMachine {
     //Methods
     @Override
     public void addCurrency(Denominations money) {
-        switch (money){
+        switch (money) {
             case SEK1:
             case SEK2:
             case SEK5:
@@ -35,7 +36,7 @@ public class VendingMachineImpl implements VendingMachine {
             case SEK500:
             case SEK1000:
                 moneyPool = moneyPool + money.getValue();
-               break;
+                break;
             default:
 
         }
@@ -51,19 +52,20 @@ public class VendingMachineImpl implements VendingMachine {
                     int productCost = product.getPrice();
                     moneyPool = moneyPool - productCost;
                     boughtProduct = product;
-                    System.out.println(boughtProduct);
+                    //System.out.println(boughtProduct);
                 }
             }
         }
-         return boughtProduct;
+        return boughtProduct;
 
     }
 
     @Override
     public int endSession() {
         System.out.println("Your change is " + moneyPool + ". Thank you for buying our products.");
+        int change = moneyPool;
         moneyPool = 0;
-        return moneyPool;
+        return change;
     }
 
     @Override
@@ -71,47 +73,48 @@ public class VendingMachineImpl implements VendingMachine {
         String productsDescription = null;
         for (Product product : products) {
             if (product.getPRODUCTNUMBER() == productNumber) {
-                System.out.println(product.examine());
-                productsDescription = product.getName();
-                } else {
-                    System.out.println("Product number not valid.");
-                }
+                productsDescription = product.examine();
             }
-        return productsDescription;
         }
-
+        return productsDescription;
+    }
 
 
     @Override
     public int getBalance() {
+        System.out.println("Your new balance is: ");
         return moneyPool;
     }
 
 
     @Override
-    public String[] getProducts() { //
-        String[] allProducts = Arrays.copyOf(products, products.length, String[].class);
+    public String[] getProducts() {
+        String[] allProducts = {};
+        for (Product product : products) {
+            allProducts = Arrays.copyOf(allProducts, allProducts.length + 1);
+            allProducts[allProducts.length - 1] = product.examine();
+            //System.out.println(Arrays.toString(allProducts));
+        }
         return allProducts;
-
     }
 
 
-    public Drinks createNewDrinks (String name, String description, int price, String volume) {
+    public Drinks createNewDrinks(String name, String description, int price, String volume) {
         Drinks newDrinks = new Drinks(name, description, price, volume);
         products = Arrays.copyOf(products, products.length + 1);
         products[products.length - 1] = newDrinks;
         return newDrinks;
     }
 
-    public Snacks createNewSnack (String name, String description, int price, int calories) {
+    public Snacks createNewSnack(String name, String description, int price, int calories) {
         Snacks newSnack = new Snacks(name, description, price, calories);
         products = Arrays.copyOf(products, products.length + 1);
         products[products.length - 1] = newSnack;
         return newSnack;
     }
 
-    public Candy createNewCandy (String name, String description, int price, int sugarPercent) {
-        Candy newCandy = new Candy (name, description, price, sugarPercent);
+    public Candy createNewCandy(String name, String description, int price, int sugarPercent) {
+        Candy newCandy = new Candy(name, description, price, sugarPercent);
         products = Arrays.copyOf(products, products.length + 1);
         products[products.length - 1] = newCandy;
         return newCandy;

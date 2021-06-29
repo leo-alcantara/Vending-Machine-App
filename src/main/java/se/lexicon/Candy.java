@@ -18,22 +18,16 @@ public class Candy extends Product {
     }
 
     @Override
-    public void use() {
-        useToString();
+    public String use() {
+        return "Open the package of your " + name + " and enjoy every bite of it. WARNING! " +
+                "If you have a nut allergy, make sure to choose a product which does not contain nuts.";
     }
 
     @Override
     public String toString() {
-        return "Candy: " +
-                "name: " + name + ", " +
-                "price: " + price + " and " +
-                "sugarPercent: " + sugarPercent +
-                ".";
-    }
-
-    public String useToString() {
-        return "Open the package of your " + name + " and enjoy every bite of it. WARNING! " +
-                "If you have a nut allergy, make sure to choose a product which does not contain nuts.";
+        return "Product number: " + getPRODUCTNUMBER() + ". Name: " + name + ". " +
+                "Price: " + price + "SEK. It contains " +
+                + sugarPercent + " percent of sugar.";
     }
 
 

@@ -26,7 +26,7 @@ public enum Denominations {
         return value;
     }
 
-    Denominations[] denominations = Denominations.values();
+    //Denominations[] denominations = Denominations.values();
 
 
 

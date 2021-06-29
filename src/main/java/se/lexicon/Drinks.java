@@ -20,21 +20,15 @@ public class Drinks extends Product {
     }
 
     @Override
-    public void use(){
-        useToString();
+    public String use(){
+        return "Open the can of your " + name + " and enjoy every sip of it.";
     }
 
     @Override
     public String toString() {
-        return "Drink: " +
-                "name: " + name + " " +
-                "price: " + price + " and " +
-                "volume: " + volume +
-                ".";
-    }
-
-    public String useToString() {
-        return "Open the can of your " + name + " and enjoy every sip of it.";
+        return "Product number: " + getPRODUCTNUMBER() + ". Name: " + name +
+                ". Price: " + price + "SEK. It has " +
+                volume + ".";
     }
 
 

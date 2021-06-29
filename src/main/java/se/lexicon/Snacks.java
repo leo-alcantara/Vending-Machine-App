@@ -19,23 +19,19 @@ public class Snacks extends Product {
     }
 
     @Override
-    public void use(){
-        useToString();
+    public String use(){
+        return "Open the package of your " + name + " and enjoy every bite of it. WARNING! " +
+                "If you have a nut allergy, make sure to choose a product which does not contain nuts.";
     }
 
     @Override
     public String toString() {
-        return "Snack: " +
-                "name: " + name + ", " +
-                "price: " + price + " and " +
-                "calories: " + calories +
-                ".";
+        return "Product number: " + getPRODUCTNUMBER() + ". Name: " + name + ". " +
+                "Price: " + price + "SEK. It contains " +
+                 + calories + " calories.";
     }
 
-    public String useToString() {
-        return "Open the package of your " + name + " and enjoy every bite of it. WARNING! " +
-                "If you have a nut allergy, make sure to choose a product which does not contain nuts.";
-    }
+
 
 
 

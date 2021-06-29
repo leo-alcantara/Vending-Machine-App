@@ -19,7 +19,7 @@ public abstract class Product {
     //Methods
     abstract String examine();
 
-    abstract void use();
+    abstract String use();
 
     //Getters and Setters
     public String getName() {
