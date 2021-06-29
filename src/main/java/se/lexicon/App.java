@@ -37,7 +37,7 @@ public class App {
 
        newVendingMachineImpl.printOutProductsListBuy();
 
-       newVendingMachineImpl.continueOrNot();
+       //newVendingMachineImpl.continueOrNot();
 
 
         //System.out.println(chosenProduct.use());
