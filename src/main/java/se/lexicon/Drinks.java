@@ -21,7 +21,7 @@ public class Drinks extends Product {
 
     @Override
     public String use(){
-        return "Open the can of your " + name + " and enjoy every sip of it.";
+        return "Open your can of " + name + " and enjoy every sip of it.";
     }
 
     @Override

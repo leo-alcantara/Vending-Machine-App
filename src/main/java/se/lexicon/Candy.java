@@ -19,7 +19,7 @@ public class Candy extends Product {
 
     @Override
     public String use() {
-        return "Open the package of your " + name + " and enjoy every bite of it. WARNING! " +
+        return "Open your package of " + name + " and enjoy every bite of it. WARNING! " +
                 "If you have a nut allergy, make sure to choose a product which does not contain nuts.";
     }
 
