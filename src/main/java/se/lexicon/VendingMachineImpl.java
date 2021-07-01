@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class VendingMachineImpl implements VendingMachine {
     //Fields
+    //String[] allProducts = {};
     Product[] products;
     int moneyPool;
 
@@ -85,7 +86,6 @@ public class VendingMachineImpl implements VendingMachine {
         for (Product product : products) {
             allProducts = Arrays.copyOf(allProducts, allProducts.length + 1);
             allProducts[allProducts.length - 1] = product.examine();
-            //System.out.println(Arrays.toString(allProducts));
         }
         return allProducts;
     }
