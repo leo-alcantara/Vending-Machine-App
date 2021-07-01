@@ -41,7 +41,6 @@ public class VendingMachineImpl implements VendingMachine {
         for (Product product : products) {
             if (product.getPRODUCTNUMBER() == productNumber) {
                 if (moneyPool >= product.getPrice()) {
-                    //int productCost = product.getPrice();
                     moneyPool = moneyPool - product.getPrice();
                     boughtProduct = product;
                 }
@@ -187,7 +186,7 @@ public class VendingMachineImpl implements VendingMachine {
         }
     }
 
-    public Denominations[] calcChange() {
+  /*  public Denominations[] calcChange() {
         Denominations[] change = {};
         if (moneyPool < 1000 && moneyPool > 500) {
             change = Arrays.copyOf(change, change.length + 1);
@@ -249,6 +248,6 @@ public class VendingMachineImpl implements VendingMachine {
             default:
         }
     }
-
+*/
 
 }

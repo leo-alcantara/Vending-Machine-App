@@ -1,6 +1,5 @@
 package se.lexicon;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,10 +9,6 @@ public class VendingMachineImplTest {
 
     VendingMachineImpl newVendingMachineImpl = new VendingMachineImpl();
 
-    @Before
-    public void before(){
-        newVendingMachineImpl.moneyPool = 0;
-    }
 
     @Test
     public void addCurrency() {
@@ -30,14 +25,32 @@ public class VendingMachineImplTest {
     }
 
     @Test
-    public void request() {
+    public void requestFindId() {
         //Arrange
+        Candy newCandy;
 
         //Act
-
+        newCandy = newVendingMachineImpl.createNewCandy("testCandy", "Test Description", 15, 30);
+        int actualId = newCandy.getPRODUCTNUMBER();
 
         //Assert
+        assertNotEquals(0, actualId);
 
+    }
+
+    @Test
+    public void requestBuy() {
+        //Arrange
+        Drinks coke = new Drinks("Coke", "Drink", 30, "330");
+        int expectedBalance = Denominations.SEK20.getValue();
+        int cokeNumber = coke.getPRODUCTNUMBER();
+
+        //Act
+        newVendingMachineImpl.addCurrency(Denominations.SEK50);
+        newVendingMachineImpl.request(cokeNumber);
+
+        //Assert
+        assertEquals(expectedBalance, newVendingMachineImpl.getBalance());
     }
 
     @Test
@@ -55,10 +68,14 @@ public class VendingMachineImplTest {
     @Test
     public void getDescription() {
         //Arrange
+        String productsDescription = null;
+        Drinks coke = new Drinks("Coke", "Drink", 30, "330");
 
         //Act
+        productsDescription = coke.examine();
 
         //Assert
+        assertNotEquals(null, productsDescription);
     }
 
     @Test
