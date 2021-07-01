@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class VendingMachineImpl implements VendingMachine {
     //Fields
-
     Product[] products;
     int moneyPool;
 
@@ -14,9 +13,6 @@ public class VendingMachineImpl implements VendingMachine {
         this.products = new Product[0];
         this.moneyPool = 0;
     }
-
-    //Instantiations
-    //Denominations newDenominations;
 
     //Methods
     @Override
@@ -35,9 +31,7 @@ public class VendingMachineImpl implements VendingMachine {
                 moneyPool = moneyPool + money.getValue();
                 break;
             default:
-
         }
-
     }
 
     @Override
@@ -46,177 +40,215 @@ public class VendingMachineImpl implements VendingMachine {
         for (Product product : products) {
             if (product.getPRODUCTNUMBER() == productNumber) {
                 if (moneyPool >= product.getPrice()) {
-                    int productCost = product.getPrice();
-                    moneyPool = moneyPool - productCost;
+                    //int productCost = product.getPrice();
+                    moneyPool = moneyPool - product.getPrice();
                     boughtProduct = product;
                 }
                 if (moneyPool < product.getPrice()) {
-                    System.out.println("You don not have enough funds. Please add more funds to your account.");
+                    System.out.println("You do not have enough funds. Please add more funds to your account.");
                     System.out.println("-----------------------------------------------------------------------------------");
                     welcomeAddFunds();
+                    continueOrNot();
                 }
             }
         }
         return boughtProduct;
-
     }
 
     @Override
     public int endSession() {
-        int change = 0;
-  /*     if (moneyPool < newDenominations.getValue() && moneyPool > 500) {
-            moneyPool = moneyPool - 500;
-        }
-        if (moneyPool < 500 && moneyPool > 200) {
-            moneyPool = moneyPool - 200;
-            if (moneyPool < 200 && moneyPool > 100) {
-                moneyPool = moneyPool - 100;
-            }
-            if (moneyPool < 100 && moneyPool > 50) {
-                moneyPool = moneyPool - 50;
-            }
-            if (moneyPool < 50 && moneyPool > 20) {
-                moneyPool = moneyPool - 20;
-            }
-            if (moneyPool < 20 && moneyPool > 10) {
-                moneyPool = moneyPool - 10;
-            }
-            if (moneyPool < 10 && moneyPool > 5) {
-                moneyPool = moneyPool - 5;
-            }
-            if (moneyPool < 5 && moneyPool > 2) {
-                moneyPool = moneyPool - 2;
-            }*/
-            System.out.println("Your change is " + moneyPool + "SEK. Thank you for buying our products.");
-            change = moneyPool;
-            moneyPool = 0;
+        int change = moneyPool;
+        System.out.println("Your change is " + moneyPool + "SEK. Thank you for buying our products.");
+        moneyPool = 0;
         return change;
-        }
+    }
 
-
-
-        @Override
-        public String getDescription ( int productNumber){
-            String productsDescription = null;
-            for (Product product : products) {
-                if (product.getPRODUCTNUMBER() == productNumber) {
-                    productsDescription = product.examine();
-                }
-            }
-            return productsDescription;
-        }
-
-
-        @Override
-        public int getBalance () {
-            return moneyPool;
-        }
-
-
-        @Override
-        public String[] getProducts () {
-            String[] allProducts = {};
-            for (Product product : products) {
-                allProducts = Arrays.copyOf(allProducts, allProducts.length + 1);
-                allProducts[allProducts.length - 1] = product.examine();
-                //System.out.println(Arrays.toString(allProducts));
-            }
-            return allProducts;
-        }
-
-
-        public Drinks createNewDrinks (String name, String description,int price, String volume){
-            Drinks newDrinks = new Drinks(name, description, price, volume);
-            products = Arrays.copyOf(products, products.length + 1);
-            products[products.length - 1] = newDrinks;
-            return newDrinks;
-        }
-
-        public Snacks createNewSnack (String name, String description,int price, int calories){
-            Snacks newSnack = new Snacks(name, description, price, calories);
-            products = Arrays.copyOf(products, products.length + 1);
-            products[products.length - 1] = newSnack;
-            return newSnack;
-        }
-
-        public Candy createNewCandy (String name, String description,int price, int sugarPercent){
-            Candy newCandy = new Candy(name, description, price, sugarPercent);
-            products = Arrays.copyOf(products, products.length + 1);
-            products[products.length - 1] = newCandy;
-            return newCandy;
-        }
-
-        public void welcomeAddFunds () {
-            System.out.println("Welcome! Please add funds to your account.");
-            System.out.println("-----------------------------------------------------------------------------------");
-            System.out.println("Please choose the amount you would like to add to your account:");
-            System.out.println("SEK1, SEK2, SEK5, SEK10, SEK20, SEK50, SEK100, SEK200, SEK500, SEK1000. Then push enter.");
-
-            Scanner scanner = new Scanner(System.in);
-            String moneyToAdd = scanner.next();
-            addCurrency(Denominations.valueOf(moneyToAdd));
-            System.out.println("-----------------------------------------------------------------------------------");
-            System.out.println("Your new balance is: " + getBalance() + "SEK.");
-            System.out.println("-----------------------------------------------------------------------------------");
-        }
-
-        public void printOutProductsListBuy () {
-            System.out.println("Those are the products available for the moment.");
-            System.out.println("-----------------------------------------------------------------------------------");
-            for (String s : getProducts()) {
-                System.out.println(s);
-            }
-
-            System.out.println("-----------------------------------------------------------------------------------");
-            System.out.println("Please press the number corresponding to the product you would like to buy, and press enter.");
-
-            Scanner scanner = new Scanner(System.in);
-            int chosenProduct = scanner.nextInt();
-            System.out.println("-----------------------------------------------------------------------------------");
-            System.out.println("You chose:");
-            System.out.println(getDescription(chosenProduct));
-            System.out.println("-----------------------------------------------------------------------------------");
-
-            boolean answer = true;
-            while (answer) {
-                System.out.println("Would you like to purchase the product? Push " + 1 + " for yes or " + 2 + " for no.");
-                int test = scanner.nextInt();
-                System.out.println("-----------------------------------------------------------------------------------");
-                if (test == 2) {
-                    endSession();
-                    answer = false;
-                }
-                if (test == 1) {
-                    Product boughtProduct = request(chosenProduct);
-                    System.out.println("Here is your " + boughtProduct.getName() + "!");
-                    System.out.println("-----------------------------------------------------------------------------------");
-                    System.out.println(boughtProduct.use());
-                    System.out.println("-----------------------------------------------------------------------------------");
-                    continueOrNot();
-                    answer = false;
-                }
-                if (test != 1 && test != 2) {
-                    System.out.println("Your choice is not valid. Please choose 1 or 2.");
-                    answer = true;
-                }
+    @Override
+    public String getDescription(int productNumber) {
+        String productsDescription = null;
+        for (Product product : products) {
+            if (product.getPRODUCTNUMBER() == productNumber) {
+                productsDescription = product.examine();
             }
         }
+        return productsDescription;
+    }
 
+    @Override
+    public int getBalance() {
+        return moneyPool;
+    }
 
-        public void continueOrNot () {
-            System.out.println("Would you like to continue buying?");
-            System.out.println("Press " + 1 + " for yes, or " + 2 + " for ending session.");
-            Scanner scanner = new Scanner(System.in);
-            int answer = scanner.nextInt();
-            if (answer == 1) {
-                System.out.println("-----------------------------------------------------------------------------------");
-                printOutProductsListBuy();
-            }
-            if (answer == 2) {
-                System.out.println("-----------------------------------------------------------------------------------");
-                endSession();
-            }
+    @Override
+    public String[] getProducts() {
+        String[] allProducts = {};
+        for (Product product : products) {
+            allProducts = Arrays.copyOf(allProducts, allProducts.length + 1);
+            allProducts[allProducts.length - 1] = product.examine();
+            //System.out.println(Arrays.toString(allProducts));
         }
+        return allProducts;
+    }
 
+    public Drinks createNewDrinks(String name, String description, int price, String volume) {
+        Drinks newDrinks = new Drinks(name, description, price, volume);
+        products = Arrays.copyOf(products, products.length + 1);
+        products[products.length - 1] = newDrinks;
+        return newDrinks;
+    }
+
+    public Snacks createNewSnack(String name, String description, int price, int calories) {
+        Snacks newSnack = new Snacks(name, description, price, calories);
+        products = Arrays.copyOf(products, products.length + 1);
+        products[products.length - 1] = newSnack;
+        return newSnack;
+    }
+
+    public Candy createNewCandy(String name, String description, int price, int sugarPercent) {
+        Candy newCandy = new Candy(name, description, price, sugarPercent);
+        products = Arrays.copyOf(products, products.length + 1);
+        products[products.length - 1] = newCandy;
+        return newCandy;
+    }
+
+    public void welcomeAddFunds() {
+        System.out.println("Welcome! Please add funds to your account.");
+        System.out.println("-----------------------------------------------------------------------------------");
+        System.out.println("Please choose the amount you would like to add to your account:");
+        System.out.println("SEK1, SEK2, SEK5, SEK10, SEK20, SEK50, SEK100, SEK200, SEK500, SEK1000. Then push enter.");
+
+        Scanner scanner = new Scanner(System.in);
+        String moneyToAdd = scanner.next();
+        addCurrency(Denominations.valueOf(moneyToAdd));
+        System.out.println("-----------------------------------------------------------------------------------");
+        System.out.println("Your new balance is: " + getBalance() + "SEK.");
+        System.out.println("-----------------------------------------------------------------------------------");
 
     }
+
+    public void printOutProductsListBuy() {
+        System.out.println("Those are the products available for the moment.");
+        System.out.println("-----------------------------------------------------------------------------------");
+        for (String s : getProducts()) {
+            System.out.println(s);
+        }
+
+        System.out.println("-----------------------------------------------------------------------------------");
+        System.out.println("Please press the number corresponding to the product you would like to buy, and press enter.");
+
+        Scanner scanner = new Scanner(System.in);
+        int chosenProduct = scanner.nextInt();
+        System.out.println("-----------------------------------------------------------------------------------");
+        System.out.println("You chose:");
+        System.out.println(getDescription(chosenProduct));
+        System.out.println("-----------------------------------------------------------------------------------");
+
+        System.out.println("Would you like to purchase the product? Push " + 1 + " for yes or " + 2 + " for no.");
+
+        boolean answer = true;
+        while (answer) {
+            int test = scanner.nextInt();
+            System.out.println("-----------------------------------------------------------------------------------");
+            if (test == 2) {
+                endSession();
+                answer = false;
+            }
+            if (test == 1) {
+                Product boughtProduct = request(chosenProduct);
+                System.out.println("Here is your " + boughtProduct.getName() + "!");
+                System.out.println("-----------------------------------------------------------------------------------");
+                System.out.println(boughtProduct.use());
+                System.out.println("-----------------------------------------------------------------------------------");
+                System.out.println("Your current balance is: " + getBalance() + "SEK");
+                System.out.println("-----------------------------------------------------------------------------------");
+                continueOrNot();
+                answer = false;
+            }
+            if (test != 1 && test != 2) {
+                System.out.println("Your choice is not valid. Please choose 1 or 2.");
+                answer = true;
+            }
+        }
+
+    }
+
+    public void continueOrNot() {
+        System.out.println("Would you like to continue buying?");
+        System.out.println("Press " + 1 + " for yes, or " + 2 + " for ending session.");
+        Scanner scanner = new Scanner(System.in);
+        int answer = scanner.nextInt();
+        if (answer == 1) {
+            System.out.println("-----------------------------------------------------------------------------------");
+            printOutProductsListBuy();
+        }
+        if (answer == 2) {
+            System.out.println("-----------------------------------------------------------------------------------");
+            endSession();
+        }
+    }
+
+    public Denominations[] getChange() {
+        Denominations[] change = {};
+        if (moneyPool < 1000 && moneyPool > 500) {
+            change = Arrays.copyOf(change, change.length + 1);
+            change[change.length - 1] = Denominations.valueOf("500");
+            moneyPool = moneyPool - 500;
+            if (moneyPool > 200) {
+                change = Arrays.copyOf(change, change.length + 1);
+                change[change.length - 1] = Denominations.valueOf("700");
+                moneyPool = moneyPool - 200;
+                if (moneyPool > 100) {
+                    change = Arrays.copyOf(change, change.length + 1);
+                    change[change.length - 1] = Denominations.valueOf("800");
+                    moneyPool = moneyPool - 100;
+                    if (moneyPool > 50) {
+                        change = Arrays.copyOf(change, change.length + 1);
+                        change[change.length - 1] = Denominations.valueOf("850");
+                        moneyPool = moneyPool - 50;
+                        if (moneyPool > 20) {
+                            change = Arrays.copyOf(change, change.length + 1);
+                            change[change.length - 1] = Denominations.valueOf("870");
+                            moneyPool = moneyPool - 20;
+                            if (moneyPool > 10) {
+                                change = Arrays.copyOf(change, change.length + 1);
+                                change[change.length - 1] = Denominations.valueOf("880");
+                                moneyPool = moneyPool - 10;
+                                if (moneyPool > 5) {
+                                    change = Arrays.copyOf(change, change.length + 1);
+                                    change[change.length - 1] = Denominations.valueOf("885");
+                                    moneyPool = moneyPool - 5;
+                                    if (moneyPool > 2) {
+                                        change = Arrays.copyOf(change, change.length + 1);
+                                        change[change.length - 1] = Denominations.valueOf("887");
+                                        moneyPool = moneyPool - 2;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return change;
+    }
+
+    public void getChange(Denominations change) {
+        switch (change) {
+            case SEK1:
+            case SEK2:
+            case SEK5:
+            case SEK10:
+            case SEK20:
+            case SEK50:
+            case SEK100:
+            case SEK200:
+            case SEK500:
+            case SEK1000:
+                moneyPool = moneyPool - change.getValue();
+                break;
+            default:
+        }
+    }
+
+
+}
