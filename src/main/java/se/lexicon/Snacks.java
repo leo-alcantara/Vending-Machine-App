@@ -32,8 +32,11 @@ public class Snacks extends Product {
     }
 
 
+    public int getCalories() {
+        return calories;
+    }
 
-
-
-
+    public void setCalories(int calories) {
+        this.calories = calories;
+    }
 }

@@ -30,5 +30,11 @@ public class Candy extends Product {
                 + sugarPercent + " percent of sugar.";
     }
 
+    public int getSugarPercent() {
+        return sugarPercent;
+    }
 
+    public void setSugarPercent(int sugarPercent) {
+        this.sugarPercent = sugarPercent;
+    }
 }

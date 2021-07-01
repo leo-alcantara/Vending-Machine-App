@@ -32,9 +32,11 @@ public class Drinks extends Product {
     }
 
 
+    public String getVolume() {
+        return volume;
+    }
 
-
-
-
-
+    public void setVolume(String volume) {
+        this.volume = volume;
+    }
 }

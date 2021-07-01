@@ -187,7 +187,7 @@ public class VendingMachineImpl implements VendingMachine {
         }
     }
 
-    public Denominations[] getChange() {
+    public Denominations[] calcChange() {
         Denominations[] change = {};
         if (moneyPool < 1000 && moneyPool > 500) {
             change = Arrays.copyOf(change, change.length + 1);
@@ -232,7 +232,7 @@ public class VendingMachineImpl implements VendingMachine {
         return change;
     }
 
-    public void getChange(Denominations change) {
+    public void giveChange(Denominations change) {
         switch (change) {
             case SEK1:
             case SEK2:
