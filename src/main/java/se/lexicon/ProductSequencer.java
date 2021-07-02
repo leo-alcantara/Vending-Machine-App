@@ -8,4 +8,8 @@ public class ProductSequencer {
         return ++sequencer;
     }
 
+    public static void resetSequencer(){
+        sequencer = 0;
+    }
+
 }

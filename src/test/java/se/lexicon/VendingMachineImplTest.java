@@ -1,5 +1,6 @@
 package se.lexicon;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,6 +9,12 @@ import static org.junit.Assert.*;
 public class VendingMachineImplTest {
 
     VendingMachineImpl newVendingMachineImpl = new VendingMachineImpl();
+
+    @After
+    public void after(){
+       newVendingMachineImpl = new VendingMachineImpl();
+       ProductSequencer.resetSequencer();
+    }
 
 
     @Test
@@ -33,7 +40,6 @@ public class VendingMachineImplTest {
         newCandy = newVendingMachineImpl.createNewCandy("testCandy", "Test Description", 15, 30);
         int actualId = newCandy.getPRODUCTNUMBER();
 
-
         //Assert
         assertNotEquals(0, actualId);
 
@@ -42,16 +48,31 @@ public class VendingMachineImplTest {
     @Test
     public void requestBuy() {
         //Arrange
-        Drinks coke = new Drinks("Coke", "Drink", 30, "330");
-        int expectedBalance = Denominations.SEK20.getValue();
+        Drinks coke = newVendingMachineImpl.createNewDrinks("Coke", "Drink", 30, "330");
+        int expectedBalance;
         int cokeNumber = coke.getPRODUCTNUMBER();
 
         //Act
         newVendingMachineImpl.addCurrency(Denominations.SEK50);
+        expectedBalance = newVendingMachineImpl.getBalance();
         newVendingMachineImpl.request(cokeNumber);
 
         //Assert
-        assertEquals(expectedBalance, newVendingMachineImpl.getBalance());
+        assertNotEquals(expectedBalance, newVendingMachineImpl.getBalance());
+    }
+
+    @Test
+    public void requestBuyNotEnoughMoney() {
+        //Arrange
+        Drinks coke = new Drinks("Coke", "Drink", 30, "330");
+        int expectedBalance = newVendingMachineImpl.getBalance();
+
+        //Act
+        newVendingMachineImpl.addCurrency(Denominations.SEK20);
+        int cokePrice = coke.getPrice();
+
+        //Assert
+        assertNotEquals(expectedBalance, cokePrice);
     }
 
     @Test
@@ -71,9 +92,9 @@ public class VendingMachineImplTest {
         //Arrange
         String productsDescription = null;
         Drinks coke = new Drinks("Coke", "Drink", 30, "330");
-
+        newVendingMachineImpl.products = new Product[] {coke};
         //Act
-        productsDescription = coke.examine();
+        productsDescription = newVendingMachineImpl.getDescription(coke.getPRODUCTNUMBER());
 
         //Assert
         assertNotEquals(null, productsDescription);

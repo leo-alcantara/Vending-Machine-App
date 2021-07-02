@@ -45,8 +45,9 @@ public class VendingMachineImpl implements VendingMachine {
                 if (moneyPool >= product.getPrice()) {
                     moneyPool = moneyPool - product.getPrice();
                     boughtProduct = product;
+                    break;
                 }
-                if (moneyPool < product.getPrice()) {
+                else if (moneyPool < product.getPrice()) {
                     System.out.println("You do not have enough funds. Please add more funds to your account.");
                     System.out.println("-----------------------------------------------------------------------------------");
                     welcomeAddFunds();
@@ -120,6 +121,7 @@ public class VendingMachineImpl implements VendingMachine {
 
         Scanner scanner = new Scanner(System.in);
         String moneyToAdd = scanner.next();
+        //Try and catch here
         addCurrency(Denominations.valueOf(moneyToAdd));
         System.out.println("-----------------------------------------------------------------------------------");
         System.out.println("Your new balance is: " + getBalance() + "SEK.");
@@ -151,7 +153,7 @@ public class VendingMachineImpl implements VendingMachine {
             int test = scanner.nextInt();
             System.out.println("-----------------------------------------------------------------------------------");
             if (test == 2) {
-                endSession();
+                continueOrNot();
                 answer = false;
             }
             if (test == 1) {
@@ -188,7 +190,7 @@ public class VendingMachineImpl implements VendingMachine {
         }
     }
 
-  /*  public Denominations[] calcChange() {
+    public Denominations[] calcChange() {
         Denominations[] change = {};
         if (moneyPool < 1000 && moneyPool > 500) {
             change = Arrays.copyOf(change, change.length + 1);
@@ -196,31 +198,31 @@ public class VendingMachineImpl implements VendingMachine {
             moneyPool = moneyPool - 500;
             if (moneyPool > 200) {
                 change = Arrays.copyOf(change, change.length + 1);
-                change[change.length - 1] = Denominations.valueOf("700");
+                change[change.length - 1] = Denominations.valueOf("200");
                 moneyPool = moneyPool - 200;
                 if (moneyPool > 100) {
                     change = Arrays.copyOf(change, change.length + 1);
-                    change[change.length - 1] = Denominations.valueOf("800");
+                    change[change.length - 1] = Denominations.valueOf("100");
                     moneyPool = moneyPool - 100;
                     if (moneyPool > 50) {
                         change = Arrays.copyOf(change, change.length + 1);
-                        change[change.length - 1] = Denominations.valueOf("850");
+                        change[change.length - 1] = Denominations.valueOf("50");
                         moneyPool = moneyPool - 50;
                         if (moneyPool > 20) {
                             change = Arrays.copyOf(change, change.length + 1);
-                            change[change.length - 1] = Denominations.valueOf("870");
+                            change[change.length - 1] = Denominations.valueOf("20");
                             moneyPool = moneyPool - 20;
                             if (moneyPool > 10) {
                                 change = Arrays.copyOf(change, change.length + 1);
-                                change[change.length - 1] = Denominations.valueOf("880");
+                                change[change.length - 1] = Denominations.valueOf("10");
                                 moneyPool = moneyPool - 10;
                                 if (moneyPool > 5) {
                                     change = Arrays.copyOf(change, change.length + 1);
-                                    change[change.length - 1] = Denominations.valueOf("885");
+                                    change[change.length - 1] = Denominations.valueOf("5");
                                     moneyPool = moneyPool - 5;
                                     if (moneyPool > 2) {
                                         change = Arrays.copyOf(change, change.length + 1);
-                                        change[change.length - 1] = Denominations.valueOf("887");
+                                        change[change.length - 1] = Denominations.valueOf("2");
                                         moneyPool = moneyPool - 2;
                                     }
                                 }
@@ -229,11 +231,13 @@ public class VendingMachineImpl implements VendingMachine {
                     }
                 }
             }
+        } else {
+            endSession();
         }
         return change;
     }
 
-    public void giveChange(Denominations change) {
+  /*  public void giveChange(Denominations change) {
         switch (change) {
             case SEK1:
             case SEK2:
@@ -250,6 +254,6 @@ public class VendingMachineImpl implements VendingMachine {
             default:
         }
     }
-*/
 
+*/
 }

@@ -25,7 +25,7 @@ public class CandyTest {
         Candy chocolate = new Candy("Snickers", "Chocolate Bar", 15, 50);
         String use;
         //Act
-        use = chocolate.examine();
+        use = chocolate.use();
 
         //Assert
         assertNotEquals(null, use);
