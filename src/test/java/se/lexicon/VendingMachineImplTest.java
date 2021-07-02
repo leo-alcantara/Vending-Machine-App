@@ -33,6 +33,7 @@ public class VendingMachineImplTest {
         newCandy = newVendingMachineImpl.createNewCandy("testCandy", "Test Description", 15, 30);
         int actualId = newCandy.getPRODUCTNUMBER();
 
+
         //Assert
         assertNotEquals(0, actualId);
 

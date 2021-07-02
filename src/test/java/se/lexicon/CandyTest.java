@@ -18,6 +18,7 @@ public class CandyTest {
         assertNotEquals(null, description);
     }
 
+
     @Test
     public void use() {
         //Arrange
@@ -28,7 +29,19 @@ public class CandyTest {
 
         //Assert
         assertNotEquals(null, use);
-
-
     }
+
+    @Test
+    public void getSugarPercent() {
+        //Arrange
+        Candy chocolate = new Candy("Snickers", "Chocolate Bar", 15, 50);
+        int sugar;
+
+        //Act
+        sugar = chocolate.getSugarPercent();
+
+        //Assert
+        assertNotEquals(0, sugar);
+    }
+
 }

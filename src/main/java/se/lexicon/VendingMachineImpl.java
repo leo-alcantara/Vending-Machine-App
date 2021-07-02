@@ -17,7 +17,8 @@ public class VendingMachineImpl implements VendingMachine {
 
     //Methods
     @Override
-    public void addCurrency(Denominations money) {
+
+        public void addCurrency (Denominations money){
         switch (money) {
             case SEK1:
             case SEK2:
@@ -32,6 +33,7 @@ public class VendingMachineImpl implements VendingMachine {
                 moneyPool = moneyPool + money.getValue();
                 break;
             default:
+                System.out.println("The currency you are trying to add is not valid. Please make sure you add a valid amount.");
         }
     }
 

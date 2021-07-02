@@ -29,6 +29,17 @@ public class SnacksTest {
 
         //Assert
         assertNotEquals(null, use);
+    }
 
+    @Test
+    public void getCalories() {
+        //Arrange
+        Snacks chips = new Snacks("Lays", "Chips", 30, 120);
+        int calories;
+        //Act
+        calories = chips.getCalories();
+
+        //Assert
+        assertNotEquals(0, calories);
     }
 }

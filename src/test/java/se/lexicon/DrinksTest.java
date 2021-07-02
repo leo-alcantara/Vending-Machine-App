@@ -30,4 +30,18 @@ public class DrinksTest {
         //Assert
         assertNotEquals(null, use);
     }
+
+    @Test
+    public void getVolume() {
+        //Arrange
+        Drinks coke = new Drinks("Coke", "Drink", 30, "330");
+        String volume;
+
+        //Act
+        volume = coke.getVolume();
+
+        //Assert
+        assertNotEquals(null, volume);
+
+    }
 }
