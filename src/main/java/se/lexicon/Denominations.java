@@ -2,7 +2,6 @@ package se.lexicon;
 
 public enum Denominations {
 
-
     SEK1(1) ,
     SEK2(2) ,
     SEK5(5) ,
@@ -14,9 +13,7 @@ public enum Denominations {
     SEK500(500),
     SEK1000(1000);
 
-
     private final int value;
-
 
     Denominations(int value) {
         this.value = value;
@@ -25,11 +22,6 @@ public enum Denominations {
     public int getValue() {
         return value;
     }
-
-    //Denominations[] denominations = Denominations.values();
-
-
-
 
 }
 

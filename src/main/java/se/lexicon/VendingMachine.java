@@ -9,7 +9,4 @@ public interface VendingMachine {
     int getBalance();
     String[] getProducts();
 
-
-
-
 }

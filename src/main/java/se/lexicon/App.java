@@ -1,15 +1,10 @@
 package se.lexicon;
 
-import sun.management.snmp.jvminstr.JvmOSImpl;
-
-import java.util.Arrays;
 import java.util.Scanner;
-import static se.lexicon.Denominations.SEK100;
-
 
 public class App {
 
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
 
         Denominations newDenominations;
 
@@ -31,29 +26,8 @@ public class App {
         newVendingMachineImpl.createNewCandy("Mars Bars", "Chocolate Bar", 15, 65);
         newVendingMachineImpl.createNewCandy("Milky Way", "Chocolate Bar", 15, 65);
 
+        newVendingMachineImpl.welcomeAddFunds();
 
-
-       newVendingMachineImpl.welcomeAddFunds();
-
-       newVendingMachineImpl.printOutProductsListBuy();
-
-       //newVendingMachineImpl.continueOrNot();
-
-
-
-        //System.out.println(chosenProduct.use());
-
-
-
-
-
-
-
-
-
-
-
-
-
+        newVendingMachineImpl.printOutProductsListBuy();
     }
 }

@@ -11,6 +11,7 @@ public class CandyTest {
         //Arrange
         Candy chocolate = new Candy("Snickers", "Chocolate Bar", 15, 50);
         String description;
+
         //Act
         description = chocolate.examine();
 
@@ -18,12 +19,12 @@ public class CandyTest {
         assertNotEquals(null, description);
     }
 
-
     @Test
     public void use() {
         //Arrange
         Candy chocolate = new Candy("Snickers", "Chocolate Bar", 15, 50);
         String use;
+
         //Act
         use = chocolate.use();
 

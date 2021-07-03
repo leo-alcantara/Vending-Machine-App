@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class VendingMachineImpl implements VendingMachine {
     //Fields
-    //String[] allProducts = {};
     Product[] products;
     int moneyPool;
 
@@ -17,7 +16,6 @@ public class VendingMachineImpl implements VendingMachine {
 
     //Methods
     @Override
-
         public void addCurrency (Denominations money){
         switch (money) {
             case SEK1:
@@ -254,6 +252,5 @@ public class VendingMachineImpl implements VendingMachine {
             default:
         }
     }
-
 */
 }

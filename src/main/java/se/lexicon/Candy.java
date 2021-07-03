@@ -1,8 +1,7 @@
 package se.lexicon;
 
-import java.util.Arrays;
-
 public class Candy extends Product {
+
     //Fields
     int sugarPercent;
 

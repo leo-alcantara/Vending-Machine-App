@@ -1,7 +1,5 @@
 package se.lexicon;
 
-import java.util.Arrays;
-
 public class Snacks extends Product {
 
     //Fields

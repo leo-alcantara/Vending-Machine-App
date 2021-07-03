@@ -1,7 +1,6 @@
 package se.lexicon;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -15,7 +14,6 @@ public class VendingMachineImplTest {
        newVendingMachineImpl = new VendingMachineImpl();
        ProductSequencer.resetSequencer();
     }
-
 
     @Test
     public void addCurrency() {
@@ -93,6 +91,7 @@ public class VendingMachineImplTest {
         String productsDescription = null;
         Drinks coke = new Drinks("Coke", "Drink", 30, "330");
         newVendingMachineImpl.products = new Product[] {coke};
+
         //Act
         productsDescription = newVendingMachineImpl.getDescription(coke.getPRODUCTNUMBER());
 

@@ -11,12 +11,12 @@ public class SnacksTest {
         //Arrange
         Snacks chips = new Snacks("Lays", "Chips", 30, 120);
         String description;
+
         //Act
         description = chips.examine();
 
         //Assert
         assertNotEquals(null, description);
-
     }
 
     @Test
@@ -24,8 +24,9 @@ public class SnacksTest {
         //Arrange
         Snacks chips = new Snacks("Lays", "Chips", 30, 120);
         String use;
+
         //Act
-        use = chips.examine();
+        use = chips.use();
 
         //Assert
         assertNotEquals(null, use);
@@ -36,6 +37,7 @@ public class SnacksTest {
         //Arrange
         Snacks chips = new Snacks("Lays", "Chips", 30, 120);
         int calories;
+
         //Act
         calories = chips.getCalories();
 

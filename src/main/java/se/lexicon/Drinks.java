@@ -1,7 +1,5 @@
 package se.lexicon;
 
-import java.util.Arrays;
-
 public class Drinks extends Product {
 
     //Fields
@@ -30,7 +28,6 @@ public class Drinks extends Product {
                 ". Price: " + price + "SEK. It has " +
                 volume + ".";
     }
-
 
     public String getVolume() {
         return volume;

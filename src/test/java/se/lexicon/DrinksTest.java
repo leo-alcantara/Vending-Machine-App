@@ -11,6 +11,7 @@ public class DrinksTest {
         //Arrange
         Drinks coke = new Drinks("Coke", "Drink", 30, "330");
         String description;
+
         //Act
         description = coke.examine();
 
@@ -42,6 +43,5 @@ public class DrinksTest {
 
         //Assert
         assertNotEquals(null, volume);
-
     }
 }
